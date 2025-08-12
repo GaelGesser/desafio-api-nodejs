@@ -1,0 +1,14 @@
+GET http://localhost:3333/coursers
+
+### 
+
+POST http://localhost:3333/coursers
+Content-Type: application/json
+
+{
+  "name": "Gabriel Gesser"
+}
+
+### 
+
+GET http://localhost:3333/coursers/2
