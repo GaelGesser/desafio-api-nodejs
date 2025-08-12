@@ -48,6 +48,42 @@ server.get('/coursers/:id', async (request, reply) => {
   return reply.status(200).send(courser)
 })
 
+server.put('/coursers/:id', async (request, reply) => {
+  const { id } = request.params as {id: string }
+  const { name } = request.body as { name?: string }
+
+  const courserIndex = cousers.findIndex(courser => courser.id === id)
+
+  if (courserIndex < 0) {
+    return reply.status(404).send({ message: 'Courser not found' })
+  }
+
+  if (!name) {
+    return reply.status(404).send({ message: 'Name is required' })
+  }
+
+  cousers[courserIndex] = {
+    id,
+    name
+  }
+
+  return reply.status(204).send()
+})
+
+server.delete('/coursers/:id', async (request, reply) => {
+  const { id } = request.params as { id: string }
+
+  const courserIndex = cousers.findIndex(courser => courser.id === id)
+
+  if (courserIndex < 0) {
+    return reply.status(404).send({ message: 'Courser not found' })
+  }
+
+  cousers.splice(courserIndex, 1)
+
+  return reply.status(204).send()
+})
+
 server.listen({ port: 3333 }).then(() => {
   console.log('Server is running on http://localhost:3333')
 })

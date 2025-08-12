@@ -12,3 +12,16 @@ Content-Type: application/json
 ### 
 
 GET http://localhost:3333/coursers/2
+
+### 
+
+PUT http://localhost:3333/coursers/4
+Content-Type: application/json
+
+{
+  "name": "Updated Name"
+}
+
+###
+
+DELETE http://localhost:3333/coursers/a0891813-7b00-4a81-a4b9-25b91404a986
