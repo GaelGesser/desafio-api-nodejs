@@ -6,12 +6,12 @@ POST http://localhost:3333/coursers
 Content-Type: application/json
 
 {
-  "name": "Gabriel Gesser"
+  "title": "Docker 2"
 }
 
 ### 
 
-GET http://localhost:3333/coursers/2
+GET http://localhost:3333/coursers/96e2ff1a-eb24-44aa-91d5-1ff53335306c
 
 ### 
 
@@ -19,7 +19,7 @@ PUT http://localhost:3333/coursers/4
 Content-Type: application/json
 
 {
-  "name": "Updated Name"
+  "title": "Updated Name"
 }
 
 ###

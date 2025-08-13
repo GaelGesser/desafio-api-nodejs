@@ -1,5 +1,10 @@
 import fastify from 'fastify'
-import crypto from 'node:crypto'
+import { validatorCompiler, serializerCompiler, type ZodTypeProvider, jsonSchemaTransform } from 'fastify-type-provider-zod'
+import fastifySwagger from '@fastify/swagger'
+import { getCourseByIdRoute } from './src/routes/get-course-by-id.ts'
+import { createCourseRoute } from './src/routes/create-course.ts'
+import { getCoursesRoute } from './src/routes/get-courses.ts'
+import scalarAPIReference from '@scalar/fastify-api-reference'
 
 const server = fastify({
   logger: {
@@ -12,77 +17,32 @@ const server = fastify({
       }
     }
   }
+}).withTypeProvider<ZodTypeProvider>()
+
+server.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: 'Desafio Node.js',
+      version: '1.0.0'
+    }
+  },
+  transform: jsonSchemaTransform,
 })
 
-const cousers = [
-  { id: '1', name: 'John Doe' },
-  { id: '2', name: 'Jane Smith' },
-  { id: '3', name: 'Alice Johnson' },
-  { id: '4', name: 'Bob Brown' },
-]
-
-server.get('/coursers', async (request, reply) => {
-  return reply.status(200).send({ cousers})
-})
-
-server.post('/coursers', async (request, reply) => {
-
-  const { name} = request.body as { name?: string }
-
-  if (!name) {
-    return reply.status(404).send({ message: 'Name is required' })
+server.register(scalarAPIReference, {
+  routePrefix: '/docs',
+  configuration: {
+    theme: 'elysiajs'
   }
-
-  cousers.push({
-    id: crypto.randomUUID(),
-    name: name
-  })
-
-  return reply.status(201).send()
 })
 
-server.get('/coursers/:id', async (request, reply) => {
-  const { id } = request.params as { id: string }
-  const courser = cousers.find(courser => courser.id === id)
 
-  return reply.status(200).send(courser)
-})
+server.setValidatorCompiler(validatorCompiler)
+server.setSerializerCompiler(serializerCompiler)
 
-server.put('/coursers/:id', async (request, reply) => {
-  const { id } = request.params as {id: string }
-  const { name } = request.body as { name?: string }
-
-  const courserIndex = cousers.findIndex(courser => courser.id === id)
-
-  if (courserIndex < 0) {
-    return reply.status(404).send({ message: 'Courser not found' })
-  }
-
-  if (!name) {
-    return reply.status(404).send({ message: 'Name is required' })
-  }
-
-  cousers[courserIndex] = {
-    id,
-    name
-  }
-
-  return reply.status(204).send()
-})
-
-server.delete('/coursers/:id', async (request, reply) => {
-  const { id } = request.params as { id: string }
-
-  const courserIndex = cousers.findIndex(courser => courser.id === id)
-
-  if (courserIndex < 0) {
-    return reply.status(404).send({ message: 'Courser not found' })
-  }
-
-  cousers.splice(courserIndex, 1)
-
-  return reply.status(204).send()
-})
+server.register(getCoursesRoute)
+server.register(createCourseRoute)
+server.register(getCourseByIdRoute)
 
 server.listen({ port: 3333 }).then(() => {
   console.log('Server is running on http://localhost:3333')
