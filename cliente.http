@@ -1,4 +1,4 @@
-GET http://localhost:3333/coursers
+GET http://localhost:3333/coursers?page=2
 
 ### 
 
@@ -6,7 +6,7 @@ POST http://localhost:3333/coursers
 Content-Type: application/json
 
 {
-  "title": "Docker 2"
+  "title": "Nuxt 3"
 }
 
 ### 

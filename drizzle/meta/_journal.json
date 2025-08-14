@@ -22,6 +22,41 @@
       "when": 1755093593210,
       "tag": "0002_secret_selene",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1755169711001,
+      "tag": "0003_lazy_christian_walker",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1755172167733,
+      "tag": "0004_green_silver_fox",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1755172210591,
+      "tag": "0005_cold_sauron",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1755172913335,
+      "tag": "0006_needy_micromacro",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1755173544466,
+      "tag": "0007_green_ma_gnuci",
+      "breakpoints": true
     }
   ]
 }
