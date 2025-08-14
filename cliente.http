@@ -4,24 +4,23 @@ GET http://localhost:3333/coursers?page=2
 
 POST http://localhost:3333/coursers
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMTk4YWFiMS0wOWU1LTc3N2QtYWZkMS0yMDE2NDBmYmUzODMiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NTIxMzk3MCwiZXhwIjoxNzU1MzAwMzcwfQ.KNJpHbfj2Ee30myNao-FZqHknqsP2sCJVSapmHTHvyE
 
 {
-  "title": "Nuxt 3"
+  "title": "Nuxt 5"
 }
 
 ### 
 
-GET http://localhost:3333/coursers/0198a957-ebdf-704e-97ed-87a0973925b6
+GET http://localhost:3333/coursers/0198aada-4ad0-735c-a9f4-1c2f51c0d824
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMTk4YWFiMS0wOWU1LTc3N2QtYWZkMS0yMDE2NDBmYmUzODMiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NTIxMzk3MCwiZXhwIjoxNzU1MzAwMzcwfQ.KNJpHbfj2Ee30myNao-FZqHknqsP2sCJVSapmHTHvyE
 
 ### 
 
-PUT http://localhost:3333/coursers/4
+POST http://localhost:3333/sessions
 Content-Type: application/json
 
 {
-  "title": "Updated Name"
+  "email": "Helio23@live.com",
+  "password": "123456"
 }
-
-###
-
-DELETE http://localhost:3333/coursers/a0891813-7b00-4a81-a4b9-25b91404a986

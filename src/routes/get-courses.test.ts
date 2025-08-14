@@ -3,7 +3,7 @@ import request from 'supertest'
 import { server } from '../app.ts'
 import { makeCourse } from '../tests/factories/make-course.ts'
 import { makeEnrollment } from '../tests/factories/make-enrollment.ts'
-import { makeUser } from '../tests/factories/make-user.ts'
+import { makeAuthenticatedUser, makeUser } from '../tests/factories/make-user.ts'
 import { v7 as uuidv7 } from 'uuid'
 
 test('get courses', async () => {
@@ -15,8 +15,11 @@ test('get courses', async () => {
   const user = await makeUser()
   await makeEnrollment(user.id, course.id)
 
+  const { token } = await makeAuthenticatedUser('manager')
+
   const response = await request(server.server)
     .get(`/coursers?search=${titleId}&page=1&limit=10`)
+    .set('Authorization', token)
 
   expect(response.status).toBe(200)
   expect(response.body).toEqual({

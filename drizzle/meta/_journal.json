@@ -57,6 +57,27 @@
       "when": 1755173544466,
       "tag": "0007_green_ma_gnuci",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1755209828931,
+      "tag": "0008_slow_justice",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1755209959783,
+      "tag": "0009_icy_deadpool",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1755210343271,
+      "tag": "0010_late_typhoid_mary",
+      "breakpoints": true
     }
   ]
 }

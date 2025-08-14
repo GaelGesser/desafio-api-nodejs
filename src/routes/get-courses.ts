@@ -3,9 +3,12 @@ import { courses, enrollments } from "../database/schema.ts"
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { and, asc, count, eq, ilike, SQL } from "drizzle-orm"
 import z from 'zod'
+import { checkRequestJwt } from "./hooks/check-request-jwt.ts"
+import { checkRequestRole } from "./hooks/check-user-role.ts"
 
 export const getCoursesRoute: FastifyPluginAsyncZod = async (server) => {
   server.get('/coursers', {
+    preHandler: [checkRequestJwt, checkRequestRole('manager')],
     schema: {
       tags: ['courses'],
       summary: 'Get all courses',
