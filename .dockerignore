@@ -1,0 +1,7 @@
+node_modules
+.git
+.gitignore
+.env*
+coverage
+vitest.config.ts
+cliente.http
